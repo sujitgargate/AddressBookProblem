@@ -18,7 +18,7 @@ public class AddressBook {
       //Initialization of map
       Map<String, List<Object>> addressBook = new TreeMap<>();
 
-      System.out.println("Enter options \n1.Add Person \n2.Edit Person");
+      System.out.println("Enter options \n1.Add Person \n2.Edit Person \n3.Delete Person");
       int choiceOfOperation = sc.nextInt();
 
       switch (choiceOfOperation) {
@@ -28,6 +28,10 @@ public class AddressBook {
 
          case 2:
             addressBookObj.editingAddressBook(addressBook);
+            break;
+
+         case 3:
+            addressBookObj.deletePerson(addressBook);
             break;
 
          default:
@@ -152,6 +156,25 @@ public class AddressBook {
       else {
          System.out.println("Entered Name Not Found");
          return null;
+      }
+   }
+
+   //Method To Delete Person
+   private void deletePerson(Map<String, List<Object>> addressBook) {
+
+      //Adding person
+      Map<String, List<Object>> addPersonToDelete = addPerson(addressBook);
+      System.out.println("Enter Name To Delete Person Data");
+      String findPersonName = sc.next();
+
+      //Checking If The Name Is There
+      if (addPersonToDelete.containsKey(findPersonName) == true) {
+         addressBook.remove(findPersonName);
+         System.out.println("Person were removed");
+         displayAddressBook(addressBook,findPersonName);
+      }
+      else {
+         System.out.println("Person Not Found");
       }
    }
 }
