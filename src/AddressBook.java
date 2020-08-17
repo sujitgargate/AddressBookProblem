@@ -26,9 +26,9 @@ public class AddressBook {
             System.out.println("Enter Number Of Persons To be Added in AddressBook");
             int addPersonCount = sc.nextInt();
 
-            while(addPersonCount != 0) {
+            while (addPersonCount != 0) {
                addressBookObj.addPerson(addressBook);
-               addPersonCount -- ;
+               addPersonCount--;
             }
 
             break;
@@ -57,39 +57,47 @@ public class AddressBook {
       sc.nextLine();
       String firstName = sc.next();
 
+
       System.out.print("Enter The Last Name :- \n");
       String lastName = sc.next();
 
-      System.out.print("Enter The address :- \n");
-      String address = sc.next();
+      String fullName = firstName + "" + lastName;
 
-      System.out.print("Enter The City :- \n");
-      String city = sc.next();
+      if (addressBook.containsKey(fullName)) {
+         System.out.println("The Person Data is Already Present : " + addressBook.get(fullName));
+      } else {
 
-      System.out.print("Enter The State :- \n");
-      String state = sc.next();
+         System.out.print("Enter The address :- \n");
+         String address = sc.next();
 
-      System.out.print("Enter The Zip Code :- \n");
-      int zipCode = sc.nextInt();
+         System.out.print("Enter The City :- \n");
+         String city = sc.next();
 
-      System.out.print("Enter The Phone Number :- \n");
-      int phoneNumber = sc.nextInt();
+         System.out.print("Enter The State :- \n");
+         String state = sc.next();
 
-      //Creating list For Person details
-      List<Object> personData = new ArrayList<>();
-      personData.add(firstName);
-      personData.add(lastName);
-      personData.add(address);
-      personData.add(city);
-      personData.add(state);
-      personData.add(zipCode);
-      personData.add(phoneNumber);
+         System.out.print("Enter The Zip Code :- \n");
+         int zipCode = sc.nextInt();
 
-      String nameofPerson = firstName + "" + lastName;
+         System.out.print("Enter The Phone Number :- \n");
+         int phoneNumber = sc.nextInt();
 
-      //PesonData is list
-      addressBook.put(nameofPerson, personData);
-      displayAddressBook(addressBook, nameofPerson);
+         //Creating list For Person details
+         List<Object> personData = new ArrayList<>();
+         personData.add(firstName);
+         personData.add(lastName);
+         personData.add(address);
+         personData.add(city);
+         personData.add(state);
+         personData.add(zipCode);
+         personData.add(phoneNumber);
+
+         String nameofPerson = firstName + "" + lastName;
+
+         //PesonData is list
+         addressBook.put(nameofPerson, personData);
+         displayAddressBook(addressBook, nameofPerson);
+      }
       return addressBook;
    }
 
@@ -159,8 +167,7 @@ public class AddressBook {
 
          displayAddressBook(addressBook, findPersonName);
          return addressBook;
-      }
-      else {
+      } else {
          System.out.println("Entered Name Not Found");
          return null;
       }
@@ -178,9 +185,8 @@ public class AddressBook {
       if (addPersonToDelete.containsKey(findPersonName) == true) {
          addressBook.remove(findPersonName);
          System.out.println("Person were removed");
-         displayAddressBook(addressBook,findPersonName);
-      }
-      else {
+         displayAddressBook(addressBook, findPersonName);
+      } else {
          System.out.println("Person Not Found");
       }
    }
