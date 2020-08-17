@@ -23,7 +23,14 @@ public class AddressBook {
 
       switch (choiceOfOperation) {
          case 1:
-            addressBookObj.addPerson(addressBook);
+            System.out.println("Enter Number Of Persons To be Added in AddressBook");
+            int addPersonCount = sc.nextInt();
+
+            while(addPersonCount != 0) {
+               addressBookObj.addPerson(addressBook);
+               addPersonCount -- ;
+            }
+
             break;
 
          case 2:
@@ -159,7 +166,7 @@ public class AddressBook {
       }
    }
 
-   //Method To Delete Person
+   //Method To Delete Person        
    private void deletePerson(Map<String, List<Object>> addressBook) {
 
       //Adding person
