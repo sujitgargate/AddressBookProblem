@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class AddressBook {
 
@@ -30,7 +31,7 @@ public class AddressBook {
                addressBookObj.addPerson(addressBook);
                addPersonCount--;
             }
-
+            addressBookObj.sortByPersonName(addressBook);
             break;
 
          case 2:
@@ -189,6 +190,23 @@ public class AddressBook {
       } else {
          System.out.println("Person Not Found");
       }
+   }
+
+   /*Sorting AddressBook By Name
+   * TreeMap is used To Sort Entries
+   */
+   private void sortByPersonName(Map<String, List<Object>> addressBook) {
+
+      //First Add Person And Then Sort
+      addPerson(addressBook);
+      Map<String, List<Object>> temporaryAddressBook = new TreeMap(addressBook);
+      displayAddressBook(temporaryAddressBook,null);
+   }
+
+   //Overriding toString To Get Hex Values In String Values
+   @Override
+   public String toString() {
+      return "FirstName: "+firstName+", LasName: "+lastName+", Address: "+address+", City: "+city+", State: "+state+", ZIP code: "+zipCode+", Phone Number: "+phoneNumber;
    }
 }
 
